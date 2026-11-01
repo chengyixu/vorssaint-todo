@@ -1,0 +1,42 @@
+{
+  "label": "vorssaint-todo (companion · bun/TS, DDD)",
+  "lang": "ts",
+  "git_root": ".",
+  "src_base": "src",
+  "test_base": "tests",
+  "import_prefix": "",
+  "resolve": "kt_pkg",
+  "catalog_project": "vorssaint-todo",
+  "deploy_symlinks": false,
+  "sectors": [
+    {"id": "todo/domain", "root": "todo/domain"},
+    {"id": "todo/application", "root": "todo/application"},
+    {"id": "todo/infrastructure", "root": "todo/infrastructure"},
+    {"id": "interfaces", "root": "interfaces"},
+    {"id": "shared", "root": "shared"}
+  ],
+  "edges": [
+    {"src": "todo/application", "dst": "todo/domain", "pattern": "domain"},
+    {"src": "todo/infrastructure", "dst": "todo/domain", "pattern": "domain"},
+    {"src": "interfaces", "dst": "todo/application", "pattern": "application"},
+    {"src": "interfaces", "dst": "todo/infrastructure", "pattern": "infrastructure"},
+    {"src": "interfaces", "dst": "shared", "pattern": "shared"},
+    {"src": "todo/domain", "dst": "shared", "pattern": "shared"},
+    {"src": "todo/infrastructure", "dst": "shared", "pattern": "shared"}
+  ],
+  "behavior": [
+    ["interface TodoRepository", "persistence port (contract, not guts)"],
+    ["TODO_DOCUMENT_VERSION|TodoDocumentDTO|TodoItemDTO", "typed wire/persistence contract — single source of truth"],
+    ["throw new DomainError", "explicit coded error surface"],
+    ["node:fs|writeFile|readFile", "⚠ fs only belongs in infrastructure"],
+    ["catch\\s*\\([^)]*\\)\\s*\\{\\s*\\}", "⚠ empty catch — silent failure, forbidden"]
+  ],
+  "boundaries_global": [
+    "Todos.json schema lives once in shared/schema.ts — CLI, skill, and future Vorssaint UI share it",
+    "Upstream issue: vorssaint/vorssaint-utils#3764"
+  ],
+  "boundaries_by_sector": {
+    "todo/infrastructure": ["local JSON file under Application Support / VORSSAINT_TODO_STORE"],
+    "interfaces": ["vors-todo CLI + agent skill wrapping the same service"]
+  }
+}

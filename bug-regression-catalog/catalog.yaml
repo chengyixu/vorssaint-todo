@@ -1,0 +1,15 @@
+project: vorssaint-todo
+entries:
+  - id: BUG-TEMPLATE-duplicate-schema
+    user_visible_symptom: >-
+      CLI and a future UI disagree on todo fields; agents write JSON humans cannot open.
+    lint: 'interface TodoItemDTO|interface TodoDocumentDTO'
+    chaos: null
+    observable_signal: 'bash scripts/todo-guards.sh'
+  - id: BUG-TEMPLATE-corrupt-overwrite
+    user_visible_symptom: >-
+      A corrupt Todos.json is silently replaced with an empty list, destroying data.
+    lint: null
+    chaos: null
+    observable_signal: >-
+      FileTodoRepository.load must throw DomainError on invalid JSON instead of returning emptyDocument

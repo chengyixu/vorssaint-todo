@@ -1,0 +1,25 @@
+{
+  "name": "vorssaint-todo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local todo list for humans and agents, sharing one schema with a future Vorssaint feature",
+  "bin": {
+    "vors-todo": "./src/interfaces/cli/main.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "bun run typecheck",
+    "guards": "bash scripts/repo-guards.sh && bash scripts/todo-guards.sh",
+    "cli": "bun run src/interfaces/cli/main.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "license": "GPL-3.0-or-later"
+}
