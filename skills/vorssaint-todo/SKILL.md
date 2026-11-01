@@ -9,9 +9,11 @@ description: >-
 
 # Vorssaint Todo (agent skill)
 
-Humans and agents share **one** local document:
+Humans and agents share **one** local document. On a Mac with Vorssaint installed that is:
 
-`~/Library/Application Support/com.vorssaint.todo/Todos.json`
+`~/Library/Application Support/com.vorssaint.utils/Todos.json`
+
+(Fallback if that folder is missing: `~/Library/Application Support/com.vorssaint.todo/Todos.json`.)
 
 Never invent a second store. Prefer the CLI below; do not hand-edit JSON unless
 recovering a corrupt file with the user watching.

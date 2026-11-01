@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "bun run typecheck",
     "guards": "bash scripts/repo-guards.sh && bash scripts/todo-guards.sh",
-    "cli": "bun run src/interfaces/cli/main.ts"
+    "cli": "bun run src/interfaces/cli/main.ts",
+    "install:local-vorssaint": "bun run scripts/install-local-vorssaint.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

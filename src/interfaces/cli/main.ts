@@ -261,7 +261,8 @@ Usage:
   vors-todo path [--json]
 
 Store:
-  Default: ~/Library/Application Support/com.vorssaint.todo/Todos.json
+  Default: ~/Library/Application Support/com.vorssaint.utils/Todos.json
+           (falls back to com.vorssaint.todo if Vorssaint support dir is absent)
   Override: --store PATH or VORSSAINT_TODO_STORE
   Agent default source: VORSSAINT_TODO_SOURCE=agent
 `);
